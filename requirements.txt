@@ -1,0 +1,24 @@
+# Datos y análisis
+pandas>=2.2
+pyarrow>=15
+numpy>=1.26
+scipy>=1.13
+statsmodels>=0.14
+scikit-learn>=1.5
+
+# Modelo Stuff+ (LightGBM) y modelo bayesiano jerárquico (MCMC)
+lightgbm>=4.3
+pymc>=5.10
+arviz>=0.17
+
+# Visualización
+matplotlib>=3.8
+seaborn>=0.13
+
+# Notebooks
+jupyter
+nbconvert
+ipykernel
+
+# Solo para reconstruir los reportes en PDF (también requiere pandoc y Chrome/Edge)
+pypdf>=4.0

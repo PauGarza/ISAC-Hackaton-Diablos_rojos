@@ -1,0 +1,209 @@
+<title>Diablos en el Harp Hel&#250;</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: reporte de una columna, hallazgo arriba, cada secci\0000f3n con su gr\0000e1fica o tabla y las recomendaciones al final */
+:root {
+  --bg: #f5f4f2; --panel: #ffffff; --ink: #1d1a1b; --muted: #6c6466; --line: #e2dcdc;
+  --diablo: #b3122e; --diablo-soft: #f6e3e6; --gris: #b9b1b3; --bueno: #1f8a5b; --malo: #c46a12;
+  --display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --body: "IBM Plex Sans", system-ui, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #141112; --panel: #1e1a1b; --ink: #f1ecec; --muted: #a59b9d; --line: #352e30;
+  --diablo: #ec4d63; --diablo-soft: #3a1c22; --gris: #5a5153; --bueno: #4cc38a; --malo: #e89a4a; color-scheme: dark } }
+:root[data-theme="dark"] {
+  --bg: #141112; --panel: #1e1a1b; --ink: #f1ecec; --muted: #a59b9d; --line: #352e30;
+  --diablo: #ec4d63; --diablo-soft: #3a1c22; --gris: #5a5153; --bueno: #4cc38a; --malo: #e89a4a; color-scheme: dark }
+* { box-sizing: border-box }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: 16px; line-height: 1.55 }
+.wrap { max-width: 920px; margin: 0 auto; padding-block: 24px 56px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)) }
+header { border-bottom: 3px solid var(--diablo); padding-bottom: 14px; margin-bottom: 24px }
+.eyebrow { font: 500 12px var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--diablo) }
+h1 { font-family: var(--display); font-weight: 700; font-size: clamp(34px, 6vw, 54px); line-height: 1; margin: 6px 0 10px; text-wrap: balance }
+.lead { font-size: 18px; max-width: 64ch; margin: 0 }
+h2 { font-family: var(--display); font-weight: 600; font-size: 28px; margin: 0 0 6px; letter-spacing: .01em; text-wrap: balance }
+section { margin-top: 36px }
+p { max-width: 68ch; margin: 8px 0 }
+.kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 20px }
+@media (max-width: 720px) { .kpis { grid-template-columns: repeat(2, minmax(0, 1fr)) } }
+.kpi { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 12px 14px; min-width: 0 }
+.kpi b { display: block; font: 700 36px/1 var(--display); color: var(--diablo); font-variant-numeric: tabular-nums }
+.kpi span { font-size: 13px; color: var(--muted) }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 16px; margin-top: 14px }
+.scroll { overflow-x: auto }
+svg { display: block; width: 100%; height: auto }
+svg text { fill: var(--muted); font: 12px var(--body) }
+svg .t-ink { fill: var(--ink) }
+.cap { font-size: 12px; color: var(--muted); margin-top: 6px }
+table { border-collapse: collapse; width: 100%; font-size: 14px; min-width: 520px }
+th, td { padding: 7px 10px; border-bottom: 1px solid var(--line); text-align: right; font-variant-numeric: tabular-nums; vertical-align: top }
+th:first-child, td:first-child { text-align: left }
+th { font-size: 12px; color: var(--muted); font-weight: 600 }
+td.hi { color: var(--diablo); font-weight: 600 }
+.good { color: var(--bueno) } .bad { color: var(--malo) }
+ul.find { padding-left: 20px; max-width: 68ch } ul.find li { margin: 6px 0 }
+.aviso { border-left: 4px solid var(--malo); background: var(--panel); padding: 12px 14px; border-radius: 0 6px 6px 0; margin-top: 14px; max-width: 72ch }
+ol.recs { counter-reset: r; list-style: none; padding: 0; display: grid; gap: 12px; margin-top: 14px }
+ol.recs li { counter-increment: r; background: var(--panel); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px 14px 56px; position: relative }
+ol.recs li::before { content: counter(r); position: absolute; left: 16px; top: 10px; font: 700 30px/1 var(--display); color: var(--diablo) }
+ol.recs b { display: block; margin-bottom: 2px }
+.two { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px }
+@media (max-width: 640px) { .two { grid-template-columns: minmax(0, 1fr) } }
+.met { font-size: 14px; color: var(--muted) }
+.met li { margin: 4px 0 }
+a { color: var(--diablo) }
+</style>
+
+<div class="wrap">
+<header><meta charset="utf-8">
+  <div class="eyebrow">EDA &#183; LMB 2024&#8211;2026 &#183; Estadio Alfredo Harp Hel&#250;, 2,240 m</div>
+  <h1>&#191;Diablos aprovecha el Harp Hel&#250;?</h1>
+  <p class="lead">S&#237;, pero solo con el bat. En victorias, su ventaja de local es normal. En carreras es la mayor de la liga, y casi toda viene del bateo: el pitcheo de Diablos empeora en casa.</p>
+  <div class="kpis">
+    <div class="kpi"><b>+10.5</b><span>puntos de % de victorias en casa contra visita (7.&#186; de 20)</span></div>
+    <div class="kpi"><b>+1.74</b><span>carreras por juego de mejora en casa (1.&#186; de 20; la liga promedia +0.35)</span></div>
+    <div class="kpi"><b>1.48</b><span>factor de carreras del Harp Hel&#250;, el m&#225;s alto de la LMB</span></div>
+    <div class="kpi"><b>+0.75</b><span>carreras/100 pitcheos que empeora el pitcheo de Diablos en casa</span></div>
+  </div>
+</header>
+
+<section>
+  <h2>Local&#237;a</h2>
+  <p>Diablos gana 78.3 % en casa y 67.9 % de visita. Toros, Rieleros y Tecos mejoran m&#225;s en victorias al jugar en casa, as&#237; que tu hip&#243;tesis se cumple en ese sentido. Pero el diferencial de carreras no tiene techo, y ah&#237; nadie mejora tanto en casa como Diablos.</p>
+  <div class="card scroll"><svg id="g1" viewBox="0 0 760 600" role="img" aria-label="Mejora del diferencial de carreras de local contra visita por equipo"></svg>
+    <div class="cap">Diferencial de carreras por juego de visita (hueco) y de local (lleno). Juegos con marcador empatado por pitcheos faltantes, excluidos.</div></div>
+  <div class="card scroll"><table>
+    <tr><th>Temporada</th><th>Local G-P</th><th>Visita G-P</th><th>Dif. local</th><th>Dif. visita</th><th>% local &#8722; % visita</th></tr>
+    <tr><td>2024</td><td>38-10</td><td>34-10</td><td>+3.65</td><td>+2.23</td><td>+1.9</td></tr>
+    <tr><td>2025</td><td>38-9</td><td>30-12</td><td>+3.68</td><td>+1.36</td><td>+9.4</td></tr>
+    <tr><td>2026 (parcial)</td><td>18-7</td><td>12-14</td><td>+1.60</td><td>+0.46</td><td class="hi">+25.8</td></tr>
+  </table></div>
+  <div class="aviso"><b>Sesgo de temporadas.</b> Los datos solo cubren 2024 a 2026, los a&#241;os del bicampeonato. El campeonato anterior hab&#237;a sido en 2014. Un equipo que gana 68 % de visita tiene poco espacio para mejorar en victorias, as&#237; que la ventaja de local en victorias sale subestimada. En 2026, cuando Diablos es menos dominante, la diferencia entre casa y visita es la mayor de sus tres temporadas. Para comprobarlo bien hacen falta los r&#233;cords de 2015 a 2023, que no vienen en estos datos.</div>
+  <p>De visita, a Diablos le va igual en parques bajos (67 % de victorias) que en otros parques de altura (67 %). La altura en general no le da ventaja. Lo que cuenta es el Harp Hel&#250; en particular, donde el lineup de Diablos aprovecha el parque m&#225;s ofensivo de la liga.</p>
+</section>
+
+<section>
+  <h2>Pitcheo en casa y de visita</h2>
+  <p>En casa, los pitchers de Diablos permiten 0.75 carreras m&#225;s por cada 100 pitcheos. A los pitchers visitantes les va peor en el Harp Hel&#250;: +1.55. Una parte de esa diferencia es que los visitantes enfrentan al lineup de Diablos.</p>
+  <div class="card scroll"><table>
+    <tr><th>M&#233;trica</th><th>Diablos en casa</th><th>Diablos de visita</th><th>Visitantes en el Harp Hel&#250;</th><th>Esos visitantes en otros parques</th></tr>
+    <tr><td>Run value / 100 pitcheos (+ = peor)</td><td class="hi">&#8722;0.01</td><td>&#8722;0.76</td><td>+1.49</td><td>&#8722;0.06</td></tr>
+    <tr><td>K %</td><td>20.0</td><td>21.9</td><td>15.1</td><td>18.8</td></tr>
+    <tr><td>BB %</td><td>8.7</td><td>8.4</td><td>11.1</td><td>9.5</td></tr>
+    <tr><td>Whiff / swing %</td><td>24.8</td><td>26.1</td><td>21.6</td><td>24.3</td></tr>
+    <tr><td>Hits / bola en juego %</td><td class="hi">37.6</td><td>34.1</td><td>41.6</td><td>35.7</td></tr>
+    <tr><td>HR / bola en juego %</td><td>3.3</td><td>3.8</td><td>4.6</td><td>4.1</td></tr>
+    <tr><td>Rodados / bola en juego %</td><td class="hi">46.5</td><td>41.5</td><td>44.0</td><td>41.5</td></tr>
+    <tr><td>Velocidad de salida (mph)</td><td>83.0</td><td>82.9</td><td>85.1</td><td>83.4</td></tr>
+  </table></div>
+  <ul class="find">
+    <li><b>En casa, el da&#241;o entra por los hits, no por los jonrones:</b> +3.5 puntos de hits por bola en juego, y menos HR.</li>
+    <li><b>Ya buscan el rodado en casa</b> (46.5 % contra 41.5 %), que es la mejor defensa contra el parque.</li>
+    <li><b>Pierden ponches</b> porque los pitcheos se mueven menos: la recta pierde unas 5 in de IVB.</li>
+    <li><b>Los visitantes se descontrolan:</b> su BB % sube de 9.5 a 11.1 en el Harp Hel&#250;.</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Qu&#233; pitcheos funcionan en el Harp Hel&#250;</h2>
+  <p>La curva y el slider son los que menos valor pierden en la altura, y el cambio y la recta los que m&#225;s. Aun as&#237;, Diablos lanza menos sliders en casa (17.5 %) que de visita (22.8 %).</p>
+  <div class="card scroll"><table>
+    <tr><th>Tipo</th><th>RV/100 liga en HH</th><th>RV/100 liga nivel del mar</th><th>P&#233;rdida</th><th>Whiff % HH / mar</th><th>Uso Diablos casa / visita %</th><th>RV/100 Diablos en casa</th></tr>
+    <tr><td>Curva</td><td>&#8722;0.31</td><td>&#8722;0.86</td><td class="good">+0.55</td><td>34.5 / 33.1</td><td>8.7 / 8.7</td><td class="good">&#8722;1.10</td></tr>
+    <tr><td>Slider</td><td>&#8722;0.11</td><td>&#8722;0.90</td><td class="good">+0.79</td><td>31.6 / 33.6</td><td class="hi">17.5 / 22.8</td><td class="good">&#8722;1.16</td></tr>
+    <tr><td>Sinker</td><td>+0.89</td><td>&#8722;0.50</td><td>+1.39</td><td>13.2 / 15.6</td><td>18.4 / 21.3</td><td>+0.28</td></tr>
+    <tr><td>Cutter</td><td>+0.52</td><td>&#8722;1.03</td><td>+1.55</td><td>24.0 / 21.8</td><td>10.4 / 3.8</td><td>&#8722;0.15</td></tr>
+    <tr><td>Recta 4 costuras</td><td>+1.05</td><td>&#8722;0.74</td><td class="bad">+1.79</td><td>19.2 / 22.1</td><td>33.5 / 32.3</td><td>+0.22</td></tr>
+    <tr><td>Cambio</td><td>+2.32</td><td>&#8722;0.54</td><td class="bad">+2.86</td><td>25.8 / 30.0</td><td>7.5 / 9.8</td><td class="bad">+1.93</td></tr>
+  </table></div>
+  <p class="cap">RV/100 = carreras permitidas por cada 100 pitcheos (negativo es bueno para el pitcher). Los usos de casa y visita mezclan pitchers distintos. El modelo Stuff+ llega al mismo orden: la recta pierde 22 puntos y el slider 9.</p>
+</section>
+
+<section>
+  <h2>Relevos y desgaste</h2>
+  <p>En casa, el bullpen aguanta la altura mejor que los abridores. Los abridores pasan de &#8722;0.70 carreras/100 de visita a +0.21 en casa (+0.91), y los relevistas de &#8722;0.83 a &#8722;0.20 (+0.63).</p>
+  <div class="card scroll"><svg id="g2" viewBox="0 0 760 340" role="img" aria-label="Carreras permitidas por inning, casa contra visita"></svg>
+    <div class="cap">Solo pitchers de Diablos. Run value por transici&#243;n de count, por cada 100 pitcheos (arriba = peor para el pitcher).</div></div>
+  <ul class="find">
+    <li><b>El hueco est&#225; en los innings 3 a 6.</b> En casa, los innings 5 y 6 son los peores (+0.37 y +0.29), y del 7 al 9 el pitcheo vuelve a ser bueno.</li>
+    <li><b>En el Harp Hel&#250; el abridor no se cansa antes.</b> En toda la liga, los abridores no empeoran m&#225;s r&#225;pido por n&#250;mero de pitcheo ni en la tercera vuelta al orden. Desde el primer inning ya est&#225;n peor, as&#237; que sacarlo antes solo se justifica si entra un relevista que aguante mejor el parque.</li>
+    <li><b>El rodado protege.</b> De 22 pitchers de Diablos con al menos 250 pitcheos en casa y de visita, los de m&#225;s rodados que la mediana empeoran +0.14 carreras/100 en casa, y los de menos rodados +1.30.</li>
+  </ul>
+  <div class="two">
+    <div class="card scroll"><table style="min-width:0">
+      <tr><th>Mejor en casa</th><th>Cambio</th></tr>
+      <tr><td>pitcher_00315 (relevo, sinker, 57 % rodados)</td><td class="good">&#8722;1.28</td></tr>
+      <tr><td>pitcher_00134 (abridor)</td><td class="good">&#8722;1.27</td></tr>
+      <tr><td>pitcher_00800</td><td class="good">&#8722;0.78</td></tr>
+      <tr><td>pitcher_01060 (abridor)</td><td class="good">&#8722;0.75</td></tr>
+    </table></div>
+    <div class="card scroll"><table style="min-width:0">
+      <tr><th>Peor en casa</th><th>Cambio</th></tr>
+      <tr><td>pitcher_00069 (abridor, 66 % rectas)</td><td class="bad">+2.94</td></tr>
+      <tr><td>pitcher_00723 (abridor)</td><td class="bad">+2.47</td></tr>
+      <tr><td>pitcher_00680 (abridor)</td><td class="bad">+2.39</td></tr>
+      <tr><td>pitcher_00619 y pitcher_00604 (abridores)</td><td class="bad">+1.65</td></tr>
+    </table></div>
+  </div>
+  <p class="cap">Cambio en carreras/100 de casa contra visita (negativo = mejor en casa). Con 260 a 1,275 pitcheos por lado, diferencias menores a 1 carrera/100 pueden ser ruido.</p>
+</section>
+
+<section>
+  <h2>Recomendaciones</h2>
+  <p>Diablos ya le saca al Harp Hel&#250; lo que puede con el bat. Lo que falta es que su pitcheo pierda menos en casa.</p>
+  <ol class="recs">
+    <li><b>Armar la rotaci&#243;n por sede.</b> Que pitcher_00134 y pitcher_01060 abran en casa, y los de rectas y elevados (pitcher_00069, pitcher_00723, pitcher_00680) de visita. Esos tres permiten entre 2.4 y 2.9 carreras/100 m&#225;s en casa.</li>
+    <li><b>Tener un puente de rodados para los innings 5 y 6 en casa.</b> Relevistas de sinker y rodados, como pitcher_00315, pitcher_01101 y pitcher_00096, desde el 5.&#186; cuando el abridor no sea de rodados.</li>
+    <li><b>Volver a usar el slider en casa y lanzar menos cambios.</b> Slider y curva son lo que menos pierde en la altura. El cambio es el peor pitcheo de Diablos en casa (+1.93); si se usa, que sea firme y abajo de la zona.</li>
+    <li><b>Atacar abajo de la zona y buscar rodados.</b> El da&#241;o en casa son hits en bola en juego. Con el mismo batazo, el rodado pierde la mitad de valor que el elevado, as&#237; que la defensa del cuadro rinde m&#225;s en casa.</li>
+    <li><b>Aprovechar el descontrol de los visitantes.</b> Su BB % sube a 11.1 y su whiff baja en el Harp Hel&#250;. Al lineup le conviene ver pitcheos en los primeros innings.</li>
+    <li><b>Reclutar para el Harp Hel&#250;:</b> pitchers de rodados, recta de poco IVB o cutter, y slider o curva con mucho spin. El <a href="https://claude.ai/artifact/KYU5KNKmTSzew9CFQMMRhd" target="_blank" rel="noopener">simulador Stuff+</a> eval&#250;a cualquier pitcheo en las dos altitudes.</li>
+  </ol>
+</section>
+
+<section>
+  <h2>Datos y m&#233;todo</h2>
+  <ul class="met">
+    <li>635,002 pitcheos LMB 2024&#8211;2026 (2026 parcial) de ISAC, con IDs an&#243;nimos. Diablos y el Harp Hel&#250; se identificaron por r&#233;cord, sin confirmaci&#243;n de ISAC.</li>
+    <li>Resultados de juego con carreras sumadas por media entrada; se excluyen los juegos con marcador empatado (pitcheos faltantes). Incluye postemporada.</li>
+    <li>Run value por pitcheo: transici&#243;n de count m&#225;s pesos lineales est&#225;ndar en el pitcheo final (no hay corredores en base en los datos).</li>
+    <li>Sin clima, umpire ni fecha. Las comparaciones de casa y visita mezclan qui&#233;n lanza en cada sede.</li>
+  </ul>
+</section>
+</div>
+
+<script>
+const loc = [{e:'Diablos',alt:2240,dl:3.23,dv:1.49},{e:'Dorados',alt:1440,dl:0.25,dv:-0.97},{e:'Pericos',alt:2135,dl:0.19,dv:-0.98},{e:'Piratas',alt:10,dl:-0.17,dv:-1.02},{e:'Leones',alt:10,dl:0.65,dv:-0.04},{e:'Tecos',alt:170,dl:0.78,dv:0.13},{e:'\u00c1guila',alt:10,dl:-0.46,dv:-1.09},{e:'Toros',alt:20,dl:1.26,dv:0.74},{e:'Caliente',alt:1890,dl:-0.96,dv:-1.46},{e:'Conspiradores',alt:1820,dl:-0.55,dv:-1.04},{e:'Guerreros',alt:1550,dl:0.77,dv:0.33},{e:'Acereros',alt:600,dl:1.00,dv:0.59},{e:'Bravos',alt:1815,dl:-0.27,dv:-0.64},{e:'Charros',alt:1570,dl:-0.51,dv:-0.61},{e:'Saraperos',alt:1600,dl:-0.15,dv:-0.13},{e:'Sultanes',alt:540,dl:0.84,dv:0.91},{e:'Tigres',alt:10,dl:-1.45,dv:-1.01},{e:'Rieleros',alt:1880,dl:-1.18,dv:-0.67},{e:'Algodoneros',alt:1120,dl:-0.43,dv:0.46},{e:'Olmecas',alt:10,dl:-0.55,dv:0.35}];
+const fmt = v => (v >= 0 ? '+' : '\u2212') + Math.abs(v).toFixed(2);
+(function () {
+  const L = 210, R = 650, y0 = 40, rh = 27, x = v => L + (v + 2) / 5.5 * (R - L);
+  let g = '';
+  for (const t of [-2, -1, 0, 1, 2, 3]) g += `<line x1="${x(t)}" x2="${x(t)}" y1="${y0 - 12}" y2="${y0 + loc.length * rh}" stroke="var(--line)" stroke-width="${t ? 1 : 2}"/><text x="${x(t)}" y="${y0 - 18}" text-anchor="middle">${t > 0 ? '+' + t : t}</text>`;
+  g += `<text x="${R + 22}" y="${y0 - 18}">mejora</text>`;
+  loc.forEach((r, i) => {
+    const y = y0 + i * rh + 6, hot = r.e === 'Diablos', c = hot ? 'var(--diablo)' : 'var(--gris)';
+    g += `<text x="${L - 10}" y="${y + 4}" text-anchor="end" class="${hot ? 't-ink' : ''}" font-weight="${hot ? 600 : 400}">${r.e} (${r.alt.toLocaleString('es-MX')} m)</text>`;
+    g += `<line x1="${x(r.dv)}" x2="${x(r.dl)}" y1="${y}" y2="${y}" stroke="${c}" stroke-width="3"/>`;
+    g += `<circle cx="${x(r.dv)}" cy="${y}" r="5" fill="var(--panel)" stroke="${c}" stroke-width="2"><title>${r.e} de visita: ${fmt(r.dv)}</title></circle>`;
+    g += `<circle cx="${x(r.dl)}" cy="${y}" r="5.5" fill="${c}"><title>${r.e} de local: ${fmt(r.dl)}</title></circle>`;
+    g += `<text x="${R + 22}" y="${y + 4}" class="${hot ? 't-ink' : ''}" font-weight="${hot ? 600 : 400}">${fmt(r.dl - r.dv)}</text>`;
+  });
+  document.getElementById('g1').innerHTML = g;
+})();
+(function () {
+  const casa = [0.07, -0.38, 0.23, 0.07, 0.37, 0.29, -0.16, -0.25, -0.14], vis = [-0.76, -0.59, -0.89, -0.73, -0.35, -0.61, -1.19, -0.86, -1.03];
+  const L = 60, R = 640, y0 = 20, B = 300, x = i => L + i / 8 * (R - L), y = v => y0 + (0.6 - v) / 1.9 * (B - y0);
+  let g = `<rect x="${x(3.6)}" y="${y0}" width="${x(5.4) - x(3.6)}" height="${B - y0}" fill="var(--diablo-soft)"/><text x="${x(4.5)}" y="${B - 8}" text-anchor="middle">innings 5 y 6</text>`;
+  for (const t of [0.5, 0, -0.5, -1]) g += `<line x1="${L}" x2="${R}" y1="${y(t)}" y2="${y(t)}" stroke="var(--line)" stroke-width="${t ? 1 : 2}"/><text x="${L - 8}" y="${y(t) + 4}" text-anchor="end">${t > 0 ? '+' + t : t}</text>`;
+  casa.forEach((_, i) => g += `<text x="${x(i)}" y="${B + 22}" text-anchor="middle">${i + 1}.\u00ba</text>`);
+  const line = (a, c, w) => `<path d="${a.map((v, i) => (i ? 'L' : 'M') + x(i) + ',' + y(v)).join(' ')}" fill="none" stroke="${c}" stroke-width="${w}"/>` + a.map((v, i) => `<circle cx="${x(i)}" cy="${y(v)}" r="4" fill="${c}"><title>Inning ${i + 1}: ${fmt(v)} carreras/100</title></circle>`).join('');
+  g += line(vis, 'var(--gris)', 2.5) + line(casa, 'var(--diablo)', 3);
+  g += `<text x="${x(8) + 12}" y="${y(casa[8]) + 4}" class="t-ink" font-weight="600">En casa</text><text x="${x(8) + 12}" y="${y(vis[8]) + 4}">De visita</text>`;
+  g += `<text x="${x(4)}" y="${y(casa[4]) - 12}" text-anchor="middle" class="t-ink">+0.37</text>`;
+  document.getElementById('g2').innerHTML = g;
+})();
+</script>

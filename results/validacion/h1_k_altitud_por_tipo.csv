@@ -1,0 +1,14 @@
+tipo,componente,k_por_km,ee,ratio_harp_helu,n_comparaciones,n_pitchers
+Changeup,ivb,0.2028,0.0129,0.635,841,294
+Changeup,hb,0.1936,0.006,0.648,1014,342
+Curveball,ivb,0.1298,0.008,0.748,600,223
+Curveball,hb,0.2077,0.0089,0.628,626,231
+Cutter,ivb,0.1214,0.01,0.762,306,112
+Four-Seam,ivb,0.127,0.0014,0.752,2702,628
+Four-Seam,hb,0.1758,0.0037,0.675,2634,611
+Sinker,ivb,0.1322,0.0052,0.744,1340,379
+Sinker,hb,0.1519,0.0027,0.712,1394,391
+Slider,ivb,0.2043,0.0157,0.633,741,216
+Slider,hb,0.2202,0.0132,0.611,1030,304
+Splitter,ivb,0.3659,0.0357,0.441,39,15
+Splitter,hb,0.2619,0.0276,0.556,55,19

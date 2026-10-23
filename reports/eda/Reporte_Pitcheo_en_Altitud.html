@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pitcheo a 2,240 metros</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Barlow+Condensed:wght@500;600;700&display=swap">
+<style>
+/* Layout: una sola columna de lectura (~68 caracteres), tarjetas solo para gráficas y veredictos; marcador de béisbol como tipografía de números */
+:root {
+  --bg: #f4f6f8;
+  --surface: #ffffff;
+  --ink: #14181f;
+  --ink-2: #4a5260;
+  --muted: #737b89;
+  --line: #dfe3e8;
+  --accent: #c42e2b;
+  --alt-0: #86b6ef;
+  --alt-1: #2a78d6;
+  --alt-2: #104281;
+  --series: #2a78d6;
+  --mute-mark: #c3c8d0;
+  --good: #0a8f0a;
+  --good-bg: #e6f4e6;
+  --warn: #b97f00;
+  --warn-bg: #fdf3dc;
+  --bad: #c43333;
+  --bad-bg: #fbe9e9;
+  --tip-bg: #14181f;
+  --tip-ink: #f4f6f8;
+  --f-display: "Barlow Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --f-body: "Atkinson Hyperlegible", "Segoe UI", system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111418; --surface: #1a1e24; --ink: #eef0f3; --ink-2: #b9c0ca; --muted: #8e95a0; --line: #2c323a;
+    --accent: #f06a66; --alt-0: #184f95; --alt-1: #3987e5; --alt-2: #9ec5f4; --series: #3987e5; --mute-mark: #4a515b;
+    --good: #3cc23c; --good-bg: #16301a; --warn: #fab219; --warn-bg: #3a2f12; --bad: #f07070; --bad-bg: #3a1a1a;
+    --tip-bg: #eef0f3; --tip-ink: #14181f; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111418; --surface: #1a1e24; --ink: #eef0f3; --ink-2: #b9c0ca; --muted: #8e95a0; --line: #2c323a;
+  --accent: #f06a66; --alt-0: #184f95; --alt-1: #3987e5; --alt-2: #9ec5f4; --series: #3987e5; --mute-mark: #4a515b;
+  --good: #3cc23c; --good-bg: #16301a; --warn: #fab219; --warn-bg: #3a2f12; --bad: #f07070; --bad-bg: #3a1a1a;
+  --tip-bg: #eef0f3; --tip-ink: #14181f; color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.6;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 64px;
+}
+main { max-width: 760px; margin: 0 auto; display: flex; flex-direction: column; gap: 56px; }
+h1, h2, h3 { font-family: var(--f-display); text-wrap: balance; line-height: 1.1; margin: 0; }
+h1 { font-size: clamp(2.6rem, 7vw, 4rem); font-weight: 700; letter-spacing: -0.01em; }
+h2 { font-size: clamp(1.8rem, 4.4vw, 2.3rem); font-weight: 700; }
+h3 { font-size: 1.35rem; font-weight: 600; }
+p { margin: 0; max-width: 68ch; }
+a { color: var(--series); }
+strong { font-weight: 700; }
+.eyebrow { font-family: var(--f-display); font-weight: 600; font-size: 0.95rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.lead { font-size: 1.15rem; color: var(--ink-2); }
+.stack { display: flex; flex-direction: column; gap: 16px; }
+.stack-lg { display: flex; flex-direction: column; gap: 24px; }
+.note { font-size: 0.92rem; color: var(--muted); }
+
+header { padding-block: 56px 8px; border-bottom: 1px solid var(--line); padding-bottom: 32px; }
+header .meta { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: 0.92rem; color: var(--muted); }
+
+.short { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 24px; }
+.short ol { margin: 0; padding-left: 1.3em; display: flex; flex-direction: column; gap: 12px; }
+.short li::marker { font-family: var(--f-display); font-weight: 700; color: var(--accent); }
+
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; }
+.tile { background: var(--surface); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.tile .num { font-family: var(--f-display); font-weight: 700; font-size: 2.2rem; line-height: 1; font-variant-numeric: tabular-nums; }
+.tile .lbl { font-size: 0.9rem; color: var(--ink-2); line-height: 1.35; }
+
+.compare { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.crow { display: grid; grid-template-columns: minmax(0, 1fr) auto auto auto; gap: 4px 14px; align-items: baseline; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.crow .q { min-width: 0; }
+.crow .v { font-family: var(--f-display); font-weight: 700; font-size: 1.7rem; font-variant-numeric: tabular-nums; text-align: right; }
+.crow .v.lo { color: var(--alt-0); }
+.crow .v.hi { color: var(--alt-2); }
+.crow .arrow { color: var(--muted); }
+.crow.head { padding: 6px 0; }
+.crow.head span { font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); text-align: right; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .crow .v.lo { color: var(--ink-2); } }
+:root[data-theme="dark"] .crow .v.lo { color: var(--ink-2); }
+
+.figure { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 20px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.figure .ftitle { font-family: var(--f-display); font-weight: 600; font-size: 1.25rem; line-height: 1.2; }
+.figure .fsub { font-size: 0.92rem; color: var(--ink-2); }
+.chart { position: relative; width: 100%; }
+.chart svg { display: block; width: 100%; height: auto; overflow: visible; }
+.chart text { font-family: var(--f-body); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 0.88rem; color: var(--ink-2); }
+.legend span { display: inline-flex; align-items: center; gap: 6px; }
+.legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+.tip { position: absolute; pointer-events: none; background: var(--tip-bg); color: var(--tip-ink); font-size: 0.85rem; line-height: 1.35; padding: 8px 10px; border-radius: 6px; max-width: 240px; z-index: 5; transform: translate(-50%, calc(-100% - 12px)); }
+details { font-size: 0.92rem; }
+details summary { cursor: pointer; color: var(--ink-2); }
+details summary:focus-visible { outline: 2px solid var(--series); outline-offset: 2px; }
+.tbl { overflow-x: auto; margin-top: 8px; }
+table { border-collapse: collapse; width: 100%; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 6px 10px 6px 0; border-bottom: 1px solid var(--line); white-space: nowrap; }
+th { font-weight: 700; color: var(--ink-2); font-size: 0.85rem; }
+td.n, th.n { text-align: right; }
+
+.hyp { display: flex; flex-direction: column; gap: 18px; padding-top: 28px; border-top: 2px solid var(--ink); }
+.hyp-head { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; }
+.hyp-tag { font-family: var(--f-display); font-weight: 700; font-size: 1rem; letter-spacing: 0.06em; color: var(--muted); }
+.verdict { display: inline-flex; align-items: center; gap: 8px; padding: 4px 12px 4px 8px; border-radius: 999px; font-weight: 700; font-size: 0.95rem; color: var(--ink); }
+.verdict svg { width: 18px; height: 18px; flex: none; }
+.verdict.yes { background: var(--good-bg); } .verdict.yes svg { color: var(--good); }
+.verdict.no { background: var(--bad-bg); } .verdict.no svg { color: var(--bad); }
+.verdict.part { background: var(--warn-bg); } .verdict.part svg { color: var(--warn); }
+.callout { border-left: 3px solid var(--accent); padding: 4px 0 4px 16px; }
+.callout p + p { margin-top: 8px; }
+
+.gloss { display: grid; grid-template-columns: minmax(0, 12rem) minmax(0, 1fr); gap: 10px 20px; margin: 0; }
+.gloss dt { font-weight: 700; }
+.gloss dd { margin: 0; color: var(--ink-2); }
+@media (max-width: 560px) {
+  .gloss { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .gloss dd { margin-bottom: 12px; }
+  .crow { grid-template-columns: minmax(0, 1fr) auto auto auto; }
+  .crow .v { font-size: 1.35rem; }
+  .figure { padding: 14px; }
+}
+ul.plain { margin: 0; padding-left: 1.2em; display: flex; flex-direction: column; gap: 8px; }
+</style>
+
+</head>
+<body>
+<main>
+  <header class="stack">
+    <span class="eyebrow">Hackathon ISAC 2026 · Diablos Rojos</span>
+    <h1>Pitcheo a 2,240 metros</h1>
+    <p class="lead">Lo que encontramos al revisar tres temporadas de lanzamientos de la Liga Mexicana: qué le hace la altitud de la Ciudad de México a cada pitcheo, y qué significa para Diablos.</p>
+    <div class="meta"><span>Primer reporte de datos</span><span>16 de octubre de 2026</span><span>Entrega del reto: 22 de octubre</span></div>
+  </header>
+
+  <section class="stack-lg" aria-labelledby="corto">
+    <h2 id="corto">La respuesta corta</h2>
+    <div class="short">
+      <ol>
+        <li><strong>En la altura, los lanzamientos se mueven menos.</strong> Con el mismo pitcher tirando el mismo lanzamiento, en los estadios más altos la pelota se mueve entre 20% y 30% menos que en los parques sin altitud. La recta "sube" unas 4 pulgadas menos.</li>
+        <li><strong>En la altura se batea mucho más.</strong> Se anotan unas 14 carreras por juego contra 9 en estadios sin altitud. La mayor parte viene de más hits, no solo de jonrones.</li>
+        <li><strong>El cambio de velocidad (changeup) no aguanta mejor la altura.</strong> Esperábamos lo contrario, pero es de los lanzamientos que más pierden.</li>
+        <li><strong>Los elevados son carísimos en la altura y los rollings casi no cambian.</strong> Por eso sacar rollings vale más ahí, aunque todavía no lo podemos demostrar pitcher por pitcher.</li>
+        <li><strong>Saber cuánto gira la pelota (el "spin") no basta.</strong> Para saber si un lanzamiento es bueno importa cómo se mueve y desde dónde sale, no solo cuántas vueltas da.</li>
+        <li><strong>Los pitchers ya se adaptan solos.</strong> En la altura usan más el slider y el cutter, que son los que menos se afectan, y menos el changeup y el sinker, que son los que más pierden.</li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="stack-lg" aria-labelledby="datos">
+    <div class="stack">
+      <span class="eyebrow">Punto de partida</span>
+      <h2 id="datos">¿Con qué información trabajamos?</h2>
+      <p>ISAC nos dio el registro de cada lanzamiento de la Liga Mexicana de Béisbol, medido por Trackman, el radar que está en los estadios. Para cada lanzamiento sabemos qué tan rápido iba, cuánto giraba, cuánto se movió, por dónde cruzó el plato y qué pasó después.</p>
+    </div>
+    <div class="tiles">
+      <div class="tile"><span class="num">635,002</span><span class="lbl">lanzamientos</span></div>
+      <div class="tile"><span class="num">2,127</span><span class="lbl">juegos</span></div>
+      <div class="tile"><span class="num">1,134</span><span class="lbl">pitchers</span></div>
+      <div class="tile"><span class="num">3</span><span class="lbl">temporadas (2024, 2025 y parte de 2026)</span></div>
+    </div>
+    <p>La información está en buen estado: 98 de cada 100 lanzamientos se pueden usar sin problema. Lo que <strong>no</strong> viene es en qué estadio se jugó, quién iba en las bases ni el clima. Más abajo explicamos cómo resolvimos lo del estadio.</p>
+    <p>Lo más valioso es que <strong>665 pitchers lanzaron tanto en estadios sin altitud como en los más altos</strong>. Eso nos deja comparar al mismo pitcher, con el mismo lanzamiento, en los dos ambientes. Así sabemos que las diferencias vienen del aire y no de que en un lugar lancen pitchers mejores o peores.</p>
+  </section>
+
+  <section class="stack-lg" aria-labelledby="aire">
+    <div class="stack">
+      <span class="eyebrow">El ambiente</span>
+      <h2 id="aire">¿Qué tan delgado es el aire en cada estadio?</h2>
+      <p>El aire frena a la pelota en su camino a home. Entre más alto el estadio, más delgado el aire y menos la frena. Una recta pierde cerca de 8.4% de su velocidad en un parque sin altitud y solo 6.9% en los más altos. Con esa diferencia medimos qué tan "denso" estaba el aire en cada juego.</p>
+    </div>
+    <div class="tiles">
+      <div class="tile"><span class="num">100%</span><span class="lbl">Estadios sin altitud (nuestra referencia)</span></div>
+      <div class="tile"><span class="num">88%</span><span class="lbl">Estadios de altitud media</span></div>
+      <div class="tile"><span class="num">82%</span><span class="lbl">Estadios de altitud extrema</span></div>
+    </div>
+    <p>En los estadios más altos el aire tiene alrededor de <strong>18% menos "cuerpo"</strong> que en los parques sin altitud. Es parecido a lo que pasa en Coors Field, en Denver, el estadio más bateador de Grandes Ligas.</p>
+
+    <div class="stack">
+      <h3>¿Y cuál es el Harp Helú?</h3>
+      <p>Los datos no dicen en qué estadio se jugó cada partido, pero lo pudimos deducir. En la parte alta de cada entrada lanza el equipo de casa. Viendo qué pitchers lanzan juntos, agrupamos a los pitchers en equipos y supimos quién era local en cada juego. Así reconstruimos <strong>23 "estadios"</strong> (equipos de casa).</p>
+      <p>La prueba de que funciona: todos los juegos de local de cada equipo caen en la misma categoría de altitud, aunque nunca usamos la altitud para armar los equipos.</p>
+    </div>
+
+    <div class="figure">
+      <div class="ftitle">Densidad del aire en cada estadio reconstruido</div>
+      <div class="fsub">Porcentaje del aire de un estadio sin altitud. Más a la izquierda = aire más delgado. Solo estadios con 40 juegos o más.</div>
+      <div class="legend" aria-hidden="true">
+        <span><i style="background:var(--alt-0)"></i>Sin altitud</span>
+        <span><i style="background:var(--alt-1)"></i>Altitud media</span>
+        <span><i style="background:var(--alt-2)"></i>Altitud extrema</span>
+      </div>
+      <div class="chart" id="ch-parks"></div>
+      <details><summary>Ver los números</summary><div class="tbl" id="tb-parks"></div></details>
+    </div>
+
+    <div class="callout">
+      <p><strong>Dos estadios tienen el aire más delgado de la liga:</strong> el 08 y el 07, con 81% cada uno y tres temporadas de datos. Uno de ellos debe ser el Harp Helú. Con estos datos no se pueden distinguir entre sí, así que <strong>le vamos a pedir a ISAC que nos confirme cuál es</strong>.</p>
+      <p>Esto importa porque dentro de "altitud extrema" hay 4 o 5 estadios distintos. Si los tratamos a todos como si fueran la Ciudad de México, el efecto del Harp Helú se diluye.</p>
+    </div>
+  </section>
+
+  <section class="stack-lg" aria-labelledby="bateo">
+    <div class="stack">
+      <span class="eyebrow">El resultado en el campo</span>
+      <h2 id="bateo">¿Se batea más en la altura?</h2>
+      <p>Sí, y por mucho. Esta es la foto general de la liga, comparando estadios sin altitud contra los de altitud extrema.</p>
+    </div>
+    <div class="compare" role="table" aria-label="Comparación de ofensiva por altitud">
+      <div class="crow head" role="row"><span role="columnheader" style="text-align:left"></span><span role="columnheader">Sin altitud</span><span role="columnheader"></span><span role="columnheader">Extrema</span></div>
+      <div class="crow" role="row"><span class="q" role="cell">Carreras por juego (sumando ambos equipos)</span><span class="v lo" role="cell">9.0</span><span class="arrow" aria-hidden="true">→</span><span class="v hi" role="cell">13.7</span></div>
+      <div class="crow" role="row"><span class="q" role="cell">De cada 100 pelotas en juego que no son jonrón, cuántas son hit</span><span class="v lo" role="cell">32</span><span class="arrow" aria-hidden="true">→</span><span class="v hi" role="cell">37</span></div>
+      <div class="crow" role="row"><span class="q" role="cell">De cada 100 elevados, cuántos son jonrón</span><span class="v lo" role="cell">12</span><span class="arrow" aria-hidden="true">→</span><span class="v hi" role="cell">16</span></div>
+      <div class="crow" role="row"><span class="q" role="cell">Distancia típica de un elevado (pies)</span><span class="v lo" role="cell">295</span><span class="arrow" aria-hidden="true">→</span><span class="v hi" role="cell">328</span></div>
+      <div class="crow" role="row"><span class="q" role="cell">De cada 100 bateadores, cuántos se ponchan</span><span class="v lo" role="cell">20</span><span class="arrow" aria-hidden="true">→</span><span class="v hi" role="cell">17</span></div>
+      <div class="crow" role="row"><span class="q" role="cell">De cada 100 swings, cuántos fallan</span><span class="v lo" role="cell">25</span><span class="arrow" aria-hidden="true">→</span><span class="v hi" role="cell">23</span></div>
+    </div>
+    <p>Lo que más llama la atención: <strong>casi todo el aumento viene de más hits, no solo de jonrones</strong>. Lo mismo encontró un estudio de la SABR en ligas menores de Estados Unidos.</p>
+    <p class="note">Esta tabla compara estadios con equipos distintos, así que es una foto general. Las comparaciones de las siguientes secciones son más justas porque usan al mismo pitcher en los dos ambientes.</p>
+  </section>
+
+  <section class="stack-lg" aria-labelledby="preguntas">
+    <div class="stack">
+      <span class="eyebrow">Las cuatro preguntas del reto</span>
+      <h2 id="preguntas">Lo que esperábamos contra lo que encontramos</h2>
+      <p>El reto propone cuatro ideas de la literatura de béisbol para comprobar con datos de la LMB. Esto es lo que dicen los datos hasta ahora.</p>
+    </div>
+
+    <article class="hyp" aria-labelledby="h1t">
+      <div class="hyp-head">
+        <span class="hyp-tag">PREGUNTA 1</span>
+        <span class="verdict yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="currentColor"/><path d="M5.5 10.5l3 3 6-6.5" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Sí, y mucho</span>
+      </div>
+      <h3 id="h1t">¿El aire delgado le quita movimiento a los lanzamientos?</h3>
+      <p>Comparamos al mismo pitcher, con el mismo lanzamiento y en la misma temporada, en estadios sin altitud y en los más altos. Su velocidad y su giro casi no cambian, pero <strong>todos sus lanzamientos se mueven menos</strong>. Es como si la altura "aplanara" el repertorio: todos se parecen más a una pelota que no gira.</p>
+
+      <div class="figure">
+        <div class="ftitle">Cómo se mueve cada lanzamiento, a nivel normal y en la altura</div>
+        <div class="fsub">Cada flecha va de cómo se mueve sin altitud a cómo se mueve en altitud extrema (mismos pitchers). Entre más cerca del centro, menos se mueve.</div>
+        <div class="legend" aria-hidden="true">
+          <span><i style="background:var(--alt-0);border-radius:50%"></i>Sin altitud</span>
+          <span><i style="background:var(--alt-2);border-radius:50%"></i>Altitud extrema</span>
+        </div>
+        <div class="chart" id="ch-move"></div>
+        <details><summary>Ver los números</summary><div class="tbl" id="tb-move"></div></details>
+      </div>
+
+      <div class="figure">
+        <div class="ftitle">¿Cuánto de su movimiento conserva cada lanzamiento en la altura?</div>
+        <div class="fsub">100% = se movería igual que en un estadio sin altitud.</div>
+        <div class="chart" id="ch-keep"></div>
+      </div>
+
+      <ul class="plain">
+        <li><strong>La recta de cuatro costuras</strong> "sube" 4 pulgadas menos. Por eso en la altura le pegan más rollings (44 de cada 100 batazos contra 36).</li>
+        <li><strong>La curva</strong> cae casi 2 pulgadas menos y rompe 3 pulgadas menos hacia el lado.</li>
+        <li><strong>El slider</strong> es el que menos cambia, igual que en Coors Field.</li>
+        <li><strong>El cambio de velocidad</strong> es el que más movimiento pierde: conserva solo 70%.</li>
+      </ul>
+    </article>
+
+    <article class="hyp" aria-labelledby="h2t">
+      <div class="hyp-head">
+        <span class="hyp-tag">PREGUNTA 2</span>
+        <span class="verdict no"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="currentColor"/><path d="M6.5 6.5l7 7M13.5 6.5l-7 7" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/></svg>No, al contrario</span>
+      </div>
+      <h3 id="h2t">¿El cambio de velocidad aguanta mejor la altura?</h3>
+      <p>La idea era que el changeup engaña sobre todo por ser más lento que la recta, y eso no depende del aire. Por eso debería sufrir menos que el slider o la curva. <strong>Los datos dicen lo contrario: es el lanzamiento que más carreras de más permite en la altura.</strong></p>
+
+      <div class="figure">
+        <div class="ftitle">Carreras de más que permite cada lanzamiento en la altura</div>
+        <div class="fsub">Por cada 100 lanzamientos, comparando al mismo pitcher en estadios sin altitud y en altitud extrema. La línea muestra el rango donde probablemente está el valor real.</div>
+        <div class="chart" id="ch-runs"></div>
+        <details><summary>Ver los números</summary><div class="tbl" id="tb-runs"></div></details>
+      </div>
+
+      <p><strong>¿Por qué?</strong> El changeup sigue siendo igual de lento que antes respecto a la recta, pero <strong>pierde 4.5 pulgadas de su caída hacia el lado del brazo</strong>. Una parte importante de su engaño viene de ese movimiento, y el movimiento es justo lo que se lleva el aire delgado.</p>
+      <p class="note">Todos los lanzamientos permiten más carreras en la altura, porque se batea más. Lo que importa es cuál sufre más. Las líneas largas (cutter y curva) significan que hay pocos casos y el resultado todavía es incierto.</p>
+    </article>
+
+    <article class="hyp" aria-labelledby="h3t">
+      <div class="hyp-head">
+        <span class="hyp-tag">PREGUNTA 3</span>
+        <span class="verdict part"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="2"/><path d="M10 2a8 8 0 0 1 0 16z" fill="currentColor"/></svg>En parte</span>
+      </div>
+      <h3 id="h3t">¿Los pitchers que sacan rollings valen más en la altura?</h3>
+      <p>Si en la altura la pelota vuela más, un elevado es más peligroso. Entonces un pitcher que saca rollings debería valer más ahí.</p>
+
+      <div class="figure">
+        <div class="ftitle">Carreras que produce cada tipo de batazo</div>
+        <div class="fsub">Por cada 100 batazos. A la derecha del cero, el batazo le sirvió a la ofensiva; a la izquierda, le sirvió al pitcher.</div>
+        <div class="legend" aria-hidden="true">
+          <span><i style="background:var(--alt-0)"></i>Sin altitud</span>
+          <span><i style="background:var(--alt-1)"></i>Altitud media</span>
+          <span><i style="background:var(--alt-2)"></i>Altitud extrema</span>
+        </div>
+        <div class="chart" id="ch-bb"></div>
+        <details><summary>Ver los números</summary><div class="tbl" id="tb-bb"></div></details>
+      </div>
+
+      <p><strong>A nivel batazo, sí:</strong> cada 100 elevados producen unas 6 carreras en estadios sin altitud y unas 21 en la altura, más del triple. Los rollings casi no cambian. Convertir un elevado en rolling ahorra mucho más en la altura.</p>
+      <p><strong>A nivel pitcher, todavía no:</strong> cuando comparamos pitchers con más y menos rollings, la ventaja en la altura no sale clara. Hay mucha variación y pocos casos por pitcher. Lo vamos a revisar con un método que aproveche mejor la poca información.</p>
+    </article>
+
+    <article class="hyp" aria-labelledby="h4t">
+      <div class="hyp-head">
+        <span class="hyp-tag">PREGUNTA 4</span>
+        <span class="verdict yes"><svg viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="9" fill="currentColor"/><path d="M5.5 10.5l3 3 6-6.5" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>Sí</span>
+      </div>
+      <h3 id="h4t">¿Hace falta algo más que el spin para saber si un lanzamiento es bueno?</h3>
+      <p>Hicimos una prueba: le mostramos a la computadora parejas de swings, uno fallado y uno con contacto, y le pedimos adivinar cuál fue el fallado. Si adivinara al azar, como con una moneda, acertaría 50 de cada 100. Probamos con distintos datos del lanzamiento, siempre con pitchers que la computadora no había visto antes.</p>
+
+      <div class="figure">
+        <div class="ftitle">¿Cuántas de 100 parejas adivina?</div>
+        <div class="fsub">Promedio de todos los tipos de lanzamiento.</div>
+        <div class="chart" id="ch-guess"></div>
+        <details><summary>Ver los números</summary><div class="tbl" id="tb-guess"></div></details>
+      </div>
+
+      <p>Solo con el spin acierta casi como una moneda al aire. Con todo el perfil del lanzamiento sube a 70. La conclusión: <strong>importa cómo se mueve la pelota, no solo cuánto gira</strong>. Además, en la altura el mismo giro produce menos movimiento: una recta se mueve 8.6 pulgadas por cada 1,000 vueltas a nivel normal y solo 6.5 en la altura.</p>
+    </article>
+  </section>
+
+  <section class="stack-lg" aria-labelledby="otras">
+    <div class="stack">
+      <span class="eyebrow">Preguntas del equipo</span>
+      <h2 id="otras">Otras cosas que encontramos</h2>
+      <p>Al platicar los primeros resultados surgieron dos dudas más. Las revisamos con los datos, otra vez comparando al mismo pitcher en estadios sin altitud y en los más altos.</p>
+    </div>
+
+    <div class="stack">
+      <h3>¿La pelota llega más lenta en la altura?</h3>
+      <p><strong>No, llega más rápido.</strong> La recta sale de la mano a la misma velocidad, pero como el aire delgado la frena menos, llega al plato casi 1.5 millas por hora más rápida.</p>
+    </div>
+    <div class="compare" role="table" aria-label="Velocidad de la recta por altitud, mismo pitcher">
+      <div class="crow head" role="row"><span role="columnheader" style="text-align:left"></span><span role="columnheader">Sin altitud</span><span role="columnheader"></span><span role="columnheader">Extrema</span></div>
+      <div class="crow" role="row"><span class="q" role="cell">Velocidad de la recta al salir de la mano (mph)</span><span class="v lo" role="cell">91.8</span><span class="arrow" aria-hidden="true">→</span><span class="v hi" role="cell">91.9</span></div>
+      <div class="crow" role="row"><span class="q" role="cell">Velocidad de la recta al llegar al plato (mph)</span><span class="v lo" role="cell">84.1</span><span class="arrow" aria-hidden="true">→</span><span class="v hi" role="cell">85.6</span></div>
+    </div>
+    <p>Entonces, ¿por qué se mueve menos? Porque el efecto que hace que la pelota se desvíe depende de qué tan denso está el aire, no de la velocidad. <strong>El mismo aire delgado que le quita movimiento también le quita freno.</strong> El bateador recibe un lanzamiento un poco más rápido y bastante más recto.</p>
+
+    <div class="stack">
+      <h3>¿Los pitchers cambian lo que lanzan en la altura?</h3>
+      <p>Una idea era que en la altura se tiran menos curvas y más rectas. <strong>No es así:</strong> el mismo pitcher usa la curva y la recta igual en los dos ambientes. Pero sí encontramos un ajuste, y tiene mucho sentido.</p>
+    </div>
+
+    <div class="figure">
+      <div class="ftitle">Cómo cambia el uso de cada lanzamiento en la altura</div>
+      <div class="fsub">Mismos 372 pitchers. Puntos de diferencia en el porcentaje de veces que tiran cada lanzamiento, altitud extrema contra sin altitud. Entre paréntesis, cuánto de su movimiento conserva en la altura.</div>
+      <div class="legend" aria-hidden="true">
+        <span><i style="background:var(--series)"></i>Lo usan más en la altura</span>
+        <span><i style="background:var(--accent)"></i>Lo usan menos en la altura</span>
+      </div>
+      <div class="chart" id="ch-mix"></div>
+      <details><summary>Ver los números</summary><div class="tbl" id="tb-mix"></div></details>
+    </div>
+
+    <div class="callout">
+      <p><strong>Los pitchers ya se adaptan:</strong> en la altura usan más los lanzamientos que menos se afectan (slider y cutter conservan 80% de su movimiento) y menos los que más pierden (el changeup conserva 70% y el sinker 74%).</p>
+      <p>Puede ser instinto o indicación de su coach, pero coincide justo con lo que medimos. Es una buena señal de que ajustar el repertorio para el Harp Helú es una recomendación con sentido.</p>
+    </div>
+    <p class="note">Parte de este cambio podría venir del rival y no del pitcher. Por ejemplo, el changeup se usa más contra bateadores del lado contrario, y cada estadio tiene un equipo local con una alineación distinta. Lo vamos a revisar antes de darlo por hecho.</p>
+  </section>
+
+  <section class="stack-lg" aria-labelledby="diablos">
+    <div class="stack">
+      <span class="eyebrow">Para el cuerpo técnico</span>
+      <h2 id="diablos">¿Qué significa esto para Diablos?</h2>
+      <p>Son conclusiones preliminares que vamos a confirmar con el modelo, pero ya apuntan a algo:</p>
+    </div>
+    <ul class="plain">
+      <li><strong>Los lanzamientos que viven de su movimiento sufren más en casa:</strong> el changeup con caída hacia el brazo, el sinker y la recta que "sube". Un pitcher que depende de ellos puede verse peor en el Harp Helú que en otros parques.</li>
+      <li><strong>El slider y el cutter son los lanzamientos que mejor aguantan la altura.</strong> Los pitchers de la liga ya los usan más cuando lanzan en estadios altos.</li>
+      <li><strong>Vale la pena preparar un repertorio para casa:</strong> apoyarse más en slider y cutter en el Harp Helú, y usar con cuidado el changeup y el sinker.</li>
+      <li><strong>Evitar elevados vale oro en casa:</strong> ahí un elevado cuesta más del triple que en un parque sin altitud.</li>
+      <li><strong>Al evaluar un prospecto o agente libre no basta con ver su spin.</strong> Hay que ver cómo se mueven sus lanzamientos y estimar cuánto de ese movimiento conservaría en la Ciudad de México.</li>
+    </ul>
+  </section>
+
+  <section class="stack-lg" aria-labelledby="sigue">
+    <div class="stack">
+      <span class="eyebrow">Próximos pasos</span>
+      <h2 id="sigue">Lo que sigue</h2>
+    </div>
+    <ul class="plain">
+      <li><strong>Confirmar con ISAC cuál estadio es el Harp Helú</strong> y preguntar si hay datos de clima y de corredores en base.</li>
+      <li><strong>Construir la calificación de cada lanzamiento (Stuff+).</strong> Funciona como el promedio de bateo: 100 es el promedio de la liga, 110 es claramente mejor que el promedio y 90 claramente peor.</li>
+      <li><strong>Armar el simulador</strong> donde el pitching coach mete las características de un lanzamiento y ve su calificación en el Harp Helú contra un estadio a nivel del mar.</li>
+      <li><strong>Ver si los pitchers que más ajustan su repertorio en la altura rinden mejor.</strong> Si es así, sería una recomendación directa para el cuerpo técnico.</li>
+      <li><strong>Revisar los changeups por estilo</strong> (los que engañan por velocidad contra los que engañan por movimiento), y volver a probar lo de los rollings con más cuidado.</li>
+    </ul>
+  </section>
+
+  <section class="stack-lg" aria-labelledby="glosario">
+    <h2 id="glosario">Palabras que usamos</h2>
+    <dl class="gloss">
+      <dt>Movimiento</dt><dd>Cuánto se desvía la pelota de una línea recta por el giro que le da el pitcher. Lo medimos en pulgadas hacia arriba/abajo y hacia los lados.</dd>
+      <dt>"Sube" la recta</dt><dd>La recta no sube de verdad, pero cae menos de lo que caería sin giro. Es lo que en inglés llaman "ride".</dd>
+      <dt>Spin</dt><dd>Cuántas vueltas por minuto da la pelota.</dd>
+      <dt>Densidad del aire</dt><dd>Qué tan "espeso" está el aire. Entre más alto el estadio, más delgado. El aire delgado frena menos a la pelota y le quita movimiento.</dd>
+      <dt>Carreras de más</dt><dd>Cuánto ayuda o perjudica un lanzamiento al marcador, según cómo cambia la cuenta, los outs y lo que pasa con la pelota.</dd>
+      <dt>Stuff+</dt><dd>La calificación que vamos a construir para cada lanzamiento. 100 es el promedio de la liga.</dd>
+      <dt>Trackman</dt><dd>El sistema de radar instalado en los estadios que mide cada lanzamiento.</dd>
+    </dl>
+  </section>
+
+  <footer class="note">
+    Los datos son propiedad de ISAC y Diablos Rojos y no se pueden compartir; este reporte solo muestra resultados. Las cifras son preliminares y pueden cambiar cuando terminemos el modelo.
+  </footer>
+</main>
+
+<script>
+(function () {
+  const css = (v) => getComputedStyle(document.documentElement).getPropertyValue(v).trim();
+  const NS = "http://www.w3.org/2000/svg";
+  const el = (tag, attrs, parent) => {
+    const e = document.createElementNS(NS, tag);
+    for (const k in attrs) e.setAttribute(k, attrs[k]);
+    if (parent) parent.appendChild(e);
+    return e;
+  };
+  const fmt1 = (v) => v.toLocaleString("es-MX", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+
+  function makeTip(host) {
+    const t = document.createElement("div");
+    t.className = "tip"; t.hidden = true; host.appendChild(t);
+    return {
+      show(html, x, y) { t.innerHTML = html; t.hidden = false; t.style.left = x + "px"; t.style.top = y + "px"; },
+      hide() { t.hidden = true; }
+    };
+  }
+  function bindTip(node, host, tip, html) {
+    node.setAttribute("tabindex", "0");
+    node.style.cursor = "default";
+    const at = (ev) => {
+      const r = host.getBoundingClientRect();
+      let x, y;
+      if (ev && ev.clientX !== undefined) { x = ev.clientX - r.left; y = ev.clientY - r.top; }
+      else { const b = node.getBoundingClientRect(); x = b.left + b.width / 2 - r.left; y = b.top - r.top; }
+      x = Math.max(110, Math.min(r.width - 110, x));
+      tip.show(html, x, y);
+    };
+    node.addEventListener("mousemove", at);
+    node.addEventListener("mouseenter", at);
+    node.addEventListener("focus", () => at());
+    node.addEventListener("mouseleave", () => tip.hide());
+    node.addEventListener("blur", () => tip.hide());
+  }
+  function table(id, head, rows) {
+    const h = "<table><thead><tr>" + head.map((c, i) => `<th class="${i ? "n" : ""}">${c}</th>`).join("") + "</tr></thead><tbody>" +
+      rows.map((r) => "<tr>" + r.map((c, i) => `<td class="${i ? "n" : ""}">${c}</td>`).join("") + "</tr>").join("") + "</tbody></table>";
+    document.getElementById(id).innerHTML = h;
+  }
+  const ALT = { "Sin altitud": "--alt-0", "Altitud media": "--alt-1", "Altitud extrema": "--alt-2" };
+
+  // ---------- Datos (resultados agregados del EDA) ----------
+  const parks = [
+    ["08", 128, 80.6, "Altitud extrema"], ["07", 116, 80.8, "Altitud extrema"], ["04", 114, 82.4, "Altitud extrema"],
+    ["03", 110, 83.5, "Altitud extrema"], ["05", 109, 84.6, "Altitud media"], ["16", 41, 85.7, "Altitud extrema"],
+    ["15", 105, 85.8, "Altitud media"], ["18", 58, 87.3, "Altitud extrema"], ["19", 57, 88.5, "Altitud media"],
+    ["12", 149, 88.9, "Altitud media"], ["13", 128, 93.5, "Altitud media"], ["14", 110, 95.9, "Sin altitud"],
+    ["10", 120, 97.9, "Sin altitud"], ["11", 128, 98.8, "Sin altitud"], ["06", 50, 99.6, "Sin altitud"],
+    ["17", 95, 99.8, "Sin altitud"], ["02", 152, 99.9, "Sin altitud"], ["01", 41, 101.9, "Sin altitud"],
+    ["21", 68, 102.7, "Sin altitud"], ["22", 60, 102.7, "Sin altitud"], ["09", 134, 105.7, "Sin altitud"]
+  ];
+  const move = [
+    { n: "Recta (4 costuras)", no: [9.6, 17.1], ex: [6.8, 13.2], keep: 76, mno: 20.0, mex: 15.2 },
+    { n: "Sinker", no: [16.3, 9.9], ex: [11.9, 7.7], keep: 74, mno: 19.6, mex: 14.5 },
+    { n: "Cutter", no: [0.2, 11.1], ex: [0.0, 8.7], keep: 80, mno: 11.6, mex: 9.2 },
+    { n: "Slider", no: [-4.7, 3.3], ex: [-3.5, 2.6], keep: 80, mno: 8.1, mex: 6.3 },
+    { n: "Curva", no: [-11.1, -9.1], ex: [-7.6, -7.2], keep: 75, mno: 15.4, mex: 11.4 },
+    { n: "Cambio (changeup)", no: [14.1, 7.3], ex: [9.6, 5.1], keep: 70, mno: 16.9, mex: 11.8 }
+  ];
+  const runs = [
+    { n: "Cambio (changeup)", v: 2.4, lo: 1.3, hi: 3.4, hl: true },
+    { n: "Sinker", v: 1.8, lo: 1.1, hi: 2.4 },
+    { n: "Recta (4 costuras)", v: 1.4, lo: 1.0, hi: 1.8 },
+    { n: "Slider", v: 1.1, lo: 0.5, hi: 1.7 },
+    { n: "Curva", v: 0.7, lo: -0.6, hi: 2.0 },
+    { n: "Cutter", v: 0.7, lo: -1.4, hi: 2.8 }
+  ];
+  const bb = [
+    { n: "Rolling", v: [-9.8, -6.5, -5.8] }, { n: "Línea", v: [18.7, 23.6, 26.0] },
+    { n: "Elevado", v: [6.4, 20.1, 21.4] }, { n: "Popup", v: [-26.3, -25.8, -23.8] }
+  ];
+  const guess = [
+    { n: "Solo el spin", v: 51, d: "Va de 50 a 53 según el lanzamiento" },
+    { n: "Movimiento y velocidad", v: 56, d: "Va de 52 a 59 según el lanzamiento" },
+    { n: "Todo el perfil del lanzamiento", v: 70, d: "Movimiento, velocidad, spin, punto de salida, extensión, ángulo de llegada y diferencias con la recta. Va de 67 a 75 según el lanzamiento" }
+  ];
+
+  // ---------- Gráficas ----------
+  function drawParks() {
+    const host = document.getElementById("ch-parks"); host.innerHTML = "";
+    const tip = makeTip(host);
+    const W = Math.max(300, Math.round(host.clientWidth || 640)), rowH = 22, top = 8, left = 92, right = 24, bottom = 36, H = top + parks.length * rowH + bottom;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Densidad del aire por estadio" }, host);
+    const x0 = 76, x1 = 108, sx = (v) => left + (v - x0) / (x1 - x0) * (W - left - right);
+    [80, 85, 90, 95, 100, 105].forEach((t) => {
+      el("line", { x1: sx(t), x2: sx(t), y1: top, y2: H - bottom, stroke: css("--line"), "stroke-width": 1 }, svg);
+      el("text", { x: sx(t), y: H - bottom + 18, "text-anchor": "middle", "font-size": 12, fill: css("--muted") }, svg).textContent = t + "%";
+    });
+    parks.forEach((p, i) => {
+      const y = top + i * rowH + rowH / 2, cand = p[0] === "08" || p[0] === "07";
+      const lab = el("text", { x: left - 10, y: y + 4, "text-anchor": "end", "font-size": 12, fill: cand ? css("--ink") : css("--ink-2"), "font-weight": cand ? 700 : 400 }, svg);
+      lab.textContent = "Estadio " + p[0];
+      el("line", { x1: sx(x0), x2: sx(p[2]), y1: y, y2: y, stroke: css("--line"), "stroke-width": 2 }, svg);
+      const c = el("circle", { cx: sx(p[2]), cy: y, r: 6, fill: css(ALT[p[3]]), stroke: css("--surface"), "stroke-width": 2 }, svg);
+      if (cand) {
+        el("text", { x: sx(p[2]) + 12, y: y + 4, "font-size": 12, fill: css("--accent"), "font-weight": 700 }, svg).textContent = "posible Harp Helú";
+      }
+      bindTip(c, host, tip, `<strong>Estadio ${p[0]}</strong><br>${p[3]}<br>Aire al ${fmt1(p[2])}% · ${p[1]} juegos`);
+    });
+    table("tb-parks", ["Estadio", "Categoría", "Aire (%)", "Juegos"], parks.map((p) => ["Estadio " + p[0], p[3], fmt1(p[2]), p[1]]));
+  }
+
+  function drawMove() {
+    const host = document.getElementById("ch-move"); host.innerHTML = "";
+    const tip = makeTip(host);
+    const W = Math.max(300, Math.round(host.clientWidth || 640)), H = 470, m = { l: 52, r: 20, t: 16, b: 52 };
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Mapa de movimiento por tipo de lanzamiento" }, host);
+    const xs = [-14, 20], ys = [-12, 20];
+    const sx = (v) => m.l + (v - xs[0]) / (xs[1] - xs[0]) * (W - m.l - m.r);
+    const sy = (v) => H - m.b - (v - ys[0]) / (ys[1] - ys[0]) * (H - m.t - m.b);
+    const defs = el("defs", {}, svg);
+    const mk = el("marker", { id: "arr", viewBox: "0 0 10 10", refX: 9, refY: 5, markerWidth: 7, markerHeight: 7, orient: "auto-start-reverse" }, defs);
+    el("path", { d: "M0,0 L10,5 L0,10 z", fill: css("--ink-2") }, mk);
+    [-10, -5, 0, 5, 10, 15].forEach((t) => {
+      el("line", { x1: sx(t), x2: sx(t), y1: m.t, y2: H - m.b, stroke: t === 0 ? css("--mute-mark") : css("--line"), "stroke-width": 1 }, svg);
+      el("text", { x: sx(t), y: H - m.b + 18, "text-anchor": "middle", "font-size": 12, fill: css("--muted") }, svg).textContent = t;
+    });
+    [-10, -5, 0, 5, 10, 15, 20].forEach((t) => {
+      el("line", { x1: m.l, x2: W - m.r, y1: sy(t), y2: sy(t), stroke: t === 0 ? css("--mute-mark") : css("--line"), "stroke-width": 1 }, svg);
+      el("text", { x: m.l - 8, y: sy(t) + 4, "text-anchor": "end", "font-size": 12, fill: css("--muted") }, svg).textContent = t;
+    });
+    el("text", { x: (m.l + W - m.r) / 2, y: H - 10, "text-anchor": "middle", "font-size": 12.5, fill: css("--ink-2") }, svg).textContent = "← hacia el lado del guante · pulgadas · hacia el lado del brazo →";
+    const yl = el("text", { x: 14, y: (m.t + H - m.b) / 2, "text-anchor": "middle", "font-size": 12.5, fill: css("--ink-2"), transform: `rotate(-90 14 ${(m.t + H - m.b) / 2})` }, svg);
+    yl.textContent = "← cae más · pulgadas · \"sube\" →";
+    const offs = { "Recta (4 costuras)": [8, -10], "Sinker": [6, -12], "Cutter": [8, -10], "Slider": [8, -10], "Curva": [-6, 22], "Cambio (changeup)": [8, 18] };
+    move.forEach((d) => {
+      const ax = sx(d.no[0]), ay = sy(d.no[1]), bx = sx(d.ex[0]), by = sy(d.ex[1]);
+      const len = Math.hypot(bx - ax, by - ay), ux = (bx - ax) / len, uy = (by - ay) / len;
+      el("line", { x1: ax + ux * 9, y1: ay + uy * 9, x2: bx - ux * 10, y2: by - uy * 10, stroke: css("--ink-2"), "stroke-width": 1.8, "marker-end": "url(#arr)" }, svg);
+      const a = el("circle", { cx: sx(d.no[0]), cy: sy(d.no[1]), r: 7, fill: css("--alt-0"), stroke: css("--surface"), "stroke-width": 2 }, svg);
+      const b = el("circle", { cx: sx(d.ex[0]), cy: sy(d.ex[1]), r: 7, fill: css("--alt-2"), stroke: css("--surface"), "stroke-width": 2 }, svg);
+      const o = offs[d.n];
+      let lx = sx(d.no[0]) + o[0], anchor = "start";
+      if (lx + d.n.length * 7 > W - 4) { lx = sx(d.no[0]) + 4; anchor = "end"; }
+      el("text", { x: lx, y: sy(d.no[1]) + o[1], "font-size": 12.5, "font-weight": 700, fill: css("--ink"), "text-anchor": anchor }, svg).textContent = d.n;
+      const desc = (p) => `${p[1] >= 0 ? "\"sube\" " + fmt1(p[1]) : "cae " + fmt1(-p[1])}" · ${fmt1(Math.abs(p[0]))}" hacia el ${p[0] >= 0 ? "brazo" : "guante"}`;
+      bindTip(a, host, tip, `<strong>${d.n}</strong><br>Sin altitud: ${desc(d.no)}`);
+      bindTip(b, host, tip, `<strong>${d.n}</strong><br>Altitud extrema: ${desc(d.ex)}<br>Conserva ${d.keep}% de su movimiento`);
+    });
+    table("tb-move", ["Lanzamiento", "Movimiento sin altitud (pulg.)", "En altitud extrema (pulg.)", "Conserva"],
+      move.map((d) => [d.n, fmt1(d.mno), fmt1(d.mex), d.keep + "%"]));
+  }
+
+  function drawKeep() {
+    const host = document.getElementById("ch-keep"); host.innerHTML = "";
+    const tip = makeTip(host);
+    const data = move.slice().sort((a, b) => b.keep - a.keep);
+    const W = Math.max(300, Math.round(host.clientWidth || 640)), rowH = 30, top = 6, left = 140, right = 52, bottom = 30, H = top + data.length * rowH + bottom;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Porcentaje de movimiento que conserva cada lanzamiento" }, host);
+    const sx = (v) => left + v / 100 * (W - left - right);
+    (W < 520 ? [0, 50, 100] : [0, 25, 50, 75, 100]).forEach((t) => {
+      el("line", { x1: sx(t), x2: sx(t), y1: top, y2: H - bottom, stroke: css("--line"), "stroke-width": 1 }, svg);
+      el("text", { x: sx(t), y: H - bottom + 18, "text-anchor": "middle", "font-size": 12, fill: css("--muted") }, svg).textContent = t + "%";
+    });
+    data.forEach((d, i) => {
+      const y = top + i * rowH, h = rowH - 10;
+      el("text", { x: left - 10, y: y + h / 2 + 5, "text-anchor": "end", "font-size": 12.5, fill: css("--ink-2") }, svg).textContent = d.n;
+      const r = el("rect", { x: sx(0), y: y, width: sx(d.keep) - sx(0), height: h, rx: 4, fill: d.n.startsWith("Cambio") ? css("--accent") : css("--series") }, svg);
+      el("text", { x: sx(d.keep) + 6, y: y + h / 2 + 5, "font-size": 12.5, "font-weight": 700, fill: css("--ink") }, svg).textContent = d.keep + "%";
+      bindTip(r, host, tip, `<strong>${d.n}</strong><br>En altitud extrema conserva ${d.keep}% del movimiento que tiene sin altitud`);
+    });
+  }
+
+  function drawRuns() {
+    const host = document.getElementById("ch-runs"); host.innerHTML = "";
+    const tip = makeTip(host);
+    const W = Math.max(300, Math.round(host.clientWidth || 640)), rowH = 34, top = 6, left = 140, right = 24, bottom = 34, H = top + runs.length * rowH + bottom;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Carreras de más por cada 100 lanzamientos en la altura" }, host);
+    const x0 = -2, x1 = 4, sx = (v) => left + (v - x0) / (x1 - x0) * (W - left - right);
+    [-2, -1, 0, 1, 2, 3, 4].forEach((t) => {
+      el("line", { x1: sx(t), x2: sx(t), y1: top, y2: H - bottom, stroke: t === 0 ? css("--mute-mark") : css("--line"), "stroke-width": t === 0 ? 1.5 : 1 }, svg);
+      el("text", { x: sx(t), y: H - bottom + 18, "text-anchor": "middle", "font-size": 12, fill: css("--muted") }, svg).textContent = t > 0 ? "+" + t : t;
+    });
+    runs.forEach((d, i) => {
+      const y = top + i * rowH + rowH / 2, col = d.hl ? css("--accent") : css("--series");
+      el("text", { x: left - 10, y: y + 4, "text-anchor": "end", "font-size": 12.5, fill: d.hl ? css("--ink") : css("--ink-2"), "font-weight": d.hl ? 700 : 400 }, svg).textContent = d.n;
+      el("line", { x1: sx(d.lo), x2: sx(d.hi), y1: y, y2: y, stroke: col, "stroke-width": 2.5, "stroke-linecap": "round", opacity: 0.55 }, svg);
+      const c = el("circle", { cx: sx(d.v), cy: y, r: 7, fill: col, stroke: css("--surface"), "stroke-width": 2 }, svg);
+      bindTip(c, host, tip, `<strong>${d.n}</strong><br>+${fmt1(d.v)} carreras por cada 100 lanzamientos<br>Rango probable: ${fmt1(d.lo)} a ${fmt1(d.hi)}`);
+    });
+    table("tb-runs", ["Lanzamiento", "Carreras de más / 100", "Rango probable"], runs.map((d) => [d.n, "+" + fmt1(d.v), fmt1(d.lo) + " a " + fmt1(d.hi)]));
+  }
+
+  function drawBB() {
+    const host = document.getElementById("ch-bb"); host.innerHTML = "";
+    const tip = makeTip(host);
+    const names = ["Sin altitud", "Altitud media", "Altitud extrema"];
+    const W = Math.max(300, Math.round(host.clientWidth || 640)), groupH = 74, top = 6, left = 80, right = 40, bottom = 34, H = top + bb.length * groupH + bottom;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Carreras por cada 100 batazos según tipo y altitud" }, host);
+    const x0 = -30, x1 = 30, sx = (v) => left + (v - x0) / (x1 - x0) * (W - left - right);
+    [-30, -20, -10, 0, 10, 20, 30].forEach((t) => {
+      el("line", { x1: sx(t), x2: sx(t), y1: top, y2: H - bottom, stroke: t === 0 ? css("--mute-mark") : css("--line"), "stroke-width": t === 0 ? 1.5 : 1 }, svg);
+      el("text", { x: sx(t), y: H - bottom + 18, "text-anchor": "middle", "font-size": 12, fill: css("--muted") }, svg).textContent = t > 0 ? "+" + t : t;
+    });
+    bb.forEach((g, i) => {
+      const gy = top + i * groupH + 6;
+      el("text", { x: left - 10, y: gy + 33, "text-anchor": "end", "font-size": 13, "font-weight": 700, fill: css("--ink") }, svg).textContent = g.n;
+      g.v.forEach((v, k) => {
+        const y = gy + k * 20, h = 16, xa = Math.min(sx(0), sx(v)), w = Math.abs(sx(v) - sx(0));
+        const r = el("rect", { x: xa, y: y, width: Math.max(w, 1), height: h, rx: 3, fill: css(ALT[names[k]]) }, svg);
+        if (k === 0 || k === 2) {
+          el("text", { x: v >= 0 ? sx(v) + 5 : sx(v) - 5, y: y + 12, "text-anchor": v >= 0 ? "start" : "end", "font-size": 11.5, fill: css("--ink-2") }, svg).textContent = (v > 0 ? "+" : "") + fmt1(v);
+        }
+        bindTip(r, host, tip, `<strong>${g.n} · ${names[k]}</strong><br>${v > 0 ? "+" : ""}${fmt1(v)} carreras por cada 100 batazos<br>${v > 0 ? "Le sirve a la ofensiva" : "Le sirve al pitcher"}`);
+      });
+    });
+    table("tb-bb", ["Batazo", "Sin altitud", "Media", "Extrema"], bb.map((g) => [g.n, ...g.v.map((v) => (v > 0 ? "+" : "") + fmt1(v))]));
+  }
+
+  function drawGuess() {
+    const host = document.getElementById("ch-guess"); host.innerHTML = "";
+    const tip = makeTip(host);
+    const W = Math.max(300, Math.round(host.clientWidth || 640)), narrow = W < 520;
+    const rowH = narrow ? 52 : 40, top = 22, left = narrow ? 4 : 210, right = 40, bottom = 30, H = top + guess.length * rowH + bottom;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Aciertos de 100 parejas según los datos usados" }, host);
+    const sx = (v) => left + v / 100 * (W - left - right);
+    [0, 25, 50, 75, 100].forEach((t) => {
+      el("line", { x1: sx(t), x2: sx(t), y1: top, y2: H - bottom, stroke: css("--line"), "stroke-width": 1 }, svg);
+      el("text", { x: sx(t), y: H - bottom + 18, "text-anchor": "middle", "font-size": 12, fill: css("--muted") }, svg).textContent = t;
+    });
+    guess.forEach((d, i) => {
+      const y = top + i * rowH + (narrow ? 20 : 0), h = narrow ? 24 : rowH - 14;
+      if (narrow) el("text", { x: left, y: y - 6, "font-size": 12.5, fill: css("--ink-2") }, svg).textContent = d.n;
+      else el("text", { x: left - 10, y: y + h / 2 + 5, "text-anchor": "end", "font-size": 12.5, fill: css("--ink-2") }, svg).textContent = d.n;
+      const r = el("rect", { x: sx(0), y: y, width: sx(d.v) - sx(0), height: h, rx: 4, fill: i === 2 ? css("--series") : css("--mute-mark") }, svg);
+      el("text", { x: sx(d.v) + 6, y: y + h / 2 + 5, "font-size": 13, "font-weight": 700, fill: css("--ink") }, svg).textContent = d.v;
+      bindTip(r, host, tip, `<strong>${d.n}</strong><br>Acierta ${d.v} de cada 100<br>${d.d}`);
+    });
+    el("line", { x1: sx(50), x2: sx(50), y1: top - 16, y2: H - bottom, stroke: css("--accent"), "stroke-width": 2 }, svg);
+    el("text", { x: sx(50) + 6, y: top - 6, "font-size": 12, "font-weight": 700, fill: css("--accent") }, svg).textContent = "moneda al aire (50)";
+    table("tb-guess", ["Datos usados", "Aciertos de 100"], guess.map((d) => [d.n, d.v]));
+  }
+
+  const mix = [
+    { n: "Slider", v: 2.9, keep: 80 }, { n: "Cutter", v: 2.6, keep: 80 }, { n: "Recta (4 costuras)", v: 0.4, keep: 76 },
+    { n: "Curva", v: 0.0, keep: 75 }, { n: "Sinker", v: -2.6, keep: 74 }, { n: "Cambio (changeup)", v: -3.5, keep: 70 }
+  ];
+  function drawMix() {
+    const host = document.getElementById("ch-mix"); host.innerHTML = "";
+    const tip = makeTip(host);
+    const W = Math.max(300, Math.round(host.clientWidth || 640)), narrow = W < 520;
+    const rowH = 32, top = 6, left = narrow ? 128 : 190, right = 50, bottom = 34, H = top + mix.length * rowH + bottom;
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": "Cambio en el uso de cada lanzamiento en la altura" }, host);
+    const x0 = -4, x1 = 4, sx = (v) => left + (v - x0) / (x1 - x0) * (W - left - right);
+    (narrow ? [-4, 0, 4] : [-4, -2, 0, 2, 4]).forEach((t) => {
+      el("line", { x1: sx(t), x2: sx(t), y1: top, y2: H - bottom, stroke: t === 0 ? css("--mute-mark") : css("--line"), "stroke-width": t === 0 ? 1.5 : 1 }, svg);
+      el("text", { x: sx(t), y: H - bottom + 18, "text-anchor": "middle", "font-size": 12, fill: css("--muted") }, svg).textContent = (t > 0 ? "+" : "") + t;
+    });
+    mix.forEach((d, i) => {
+      const y = top + i * rowH, h = rowH - 12, cy = y + h / 2 + 5;
+      el("text", { x: left - 10, y: cy, "text-anchor": "end", "font-size": 12.5, fill: css("--ink-2") }, svg).textContent = narrow ? d.n.replace(" (4 costuras)", "").replace(" (changeup)", "") + ` (${d.keep}%)` : `${d.n} (${d.keep}%)`;
+      const xa = Math.min(sx(0), sx(d.v)), w = Math.max(Math.abs(sx(d.v) - sx(0)), 2);
+      const r = el("rect", { x: xa, y: y, width: w, height: h, rx: 3, fill: d.v >= 0 ? css("--series") : css("--accent") }, svg);
+      el("text", { x: d.v >= 0 ? sx(d.v) + 6 : sx(0) + 6, y: cy, "text-anchor": "start", "font-size": 12.5, "font-weight": 700, fill: css("--ink") }, svg).textContent = (d.v > 0 ? "+" : "") + fmt1(d.v);
+      bindTip(r, host, tip, `<strong>${d.n}</strong><br>${d.v > 0 ? "Lo usan " + fmt1(d.v) + " puntos más" : d.v < 0 ? "Lo usan " + fmt1(-d.v) + " puntos menos" : "Lo usan igual"} en la altura<br>Conserva ${d.keep}% de su movimiento`);
+    });
+    table("tb-mix", ["Lanzamiento", "Cambio en uso (puntos)", "Movimiento que conserva"], mix.map((d) => [d.n, (d.v > 0 ? "+" : "") + fmt1(d.v), d.keep + "%"]));
+  }
+
+  function drawAll() { drawParks(); drawMove(); drawKeep(); drawRuns(); drawBB(); drawGuess(); drawMix(); }
+  drawAll();
+  let lastW = 0, timer;
+  window.addEventListener("resize", () => {
+    clearTimeout(timer);
+    timer = setTimeout(() => { const w = document.getElementById("ch-move").clientWidth; if (w !== lastW) { lastW = w; drawAll(); } }, 150);
+  });
+  const mq = window.matchMedia("(prefers-color-scheme: dark)");
+  if (mq.addEventListener) mq.addEventListener("change", drawAll);
+  new MutationObserver(drawAll).observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+})();
+</script>
+
+</body>
+</html>

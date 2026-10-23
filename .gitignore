@@ -1,0 +1,25 @@
+# Los datos son propiedad de ISAC / Diablos Rojos: no se publican (ver Disclaimers del reto)
+data/*
+!data/README.md
+*.parquet
+*.pkl
+*.rds
+
+# Salidas regenerables del pipeline (intermedios, scores por pitcheo)
+outputs/
+
+# Versiones de trabajo anteriores y respaldos locales (no son la entrega final)
+Otho/
+_archivo/
+
+# Python / Jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Sistema
+.DS_Store
+Thumbs.db
+desktop.ini

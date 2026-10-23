@@ -1,0 +1,9 @@
+﻿validacion,modelo,n_test,logloss,logloss_constante,mejora_logloss_%,mse_rv_x1000,mse_baseline_count_x1000,mejora_mse_vs_baseline_%,pitchers_200+,r_pitcher_xrv_vs_rv,r_pitcher_baseline_vs_rv
+temporada: 2024-25 -> 2026,stuff,132409,1.5224,1.5457,1.51,71.052,71.166,0.16,273,0.419,-0.261
+temporada: 2024-25 -> 2026,loc,132409,1.0353,1.5457,33.03,67.476,71.166,5.19,273,0.393,-0.261
+temporada: 2024-25 -> 2026,pitch,132409,1.0085,1.5457,34.75,67.177,71.166,5.61,273,0.556,-0.261
+parque: resto -> Harp Helú,stuff,38906,1.5118,1.5326,1.36,74.829,75.06,0.31,35,0.66,-0.199
+parque: resto -> Harp Helú,pitch,38906,1.0001,1.5326,34.75,71.26,75.06,5.06,35,0.62,-0.199
+pitcher: 85% -> 15% (H4),stuff,94000,1.512,1.5344,1.46,72.201,72.334,0.18,108,0.435,-0.368
+pitcher: 85% -> 15% (H4),stuff_solo_velo_spin,94000,1.5235,1.5344,0.71,72.269,72.334,0.09,108,0.337,-0.368
+pitcher: 85% -> 15% (H4),stuff_velo_spin_mov,94000,1.5168,1.5344,1.15,72.226,72.334,0.15,108,0.375,-0.368

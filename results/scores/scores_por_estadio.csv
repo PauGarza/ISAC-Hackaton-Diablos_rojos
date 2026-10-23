@@ -1,0 +1,21 @@
+﻿estadio,altitud_m,pitcheos,stuff_plus,location_plus,pitching_plus,rv100_observado,xrv100_pitching,harp_helu
+Estadio Alfredo Harp Helú,2240.0,38906,94.4,98.86,98.9,0.87,0.9,True
+Estadio Hermanos Serdán,2135.0,33034,95.05,98.83,98.84,0.55,0.94,False
+Estadio Francisco Villa,1890.0,35389,95.55,99.2,99.07,0.52,0.79,False
+Parque Alberto Romo Chávez,1880.0,28565,93.88,98.36,98.69,1.02,1.04,False
+Estadio Querétaro,1820.0,10135,91.97,98.13,98.18,1.39,1.36,False
+Estadio Domingo Santana,1815.0,35240,93.35,98.38,98.64,1.24,1.06,False
+Estadio Francisco I. Madero,1600.0,29077,94.78,99.01,99.01,0.45,0.83,False
+Estadio Panamericano,1570.0,31702,94.69,98.91,98.94,0.7,0.87,False
+Estadio Eduardo Vasconcelos,1550.0,32701,93.22,98.66,98.88,0.92,0.91,False
+Estadio Monumental,1440.0,21843,95.62,99.13,99.08,0.45,0.78,False
+Estadio Revolución,1120.0,38749,99.68,99.89,99.82,-0.03,0.31,False
+Estadio Monclova,600.0,31305,102.12,100.55,100.51,-0.36,-0.14,False
+Estadio Mobil Super,540.0,37357,103.69,100.74,100.75,-0.5,-0.29,False
+Estadio Nuevo Laredo,170.0,35992,106.56,101.55,101.38,-1.0,-0.7,False
+Estadio Chevron,20.0,34085,108.48,101.91,101.87,-1.12,-1.02,False
+Estadio Beto Ávila,10.0,27813,106.33,101.25,101.19,-1.17,-0.58,False
+Estadio Nelson Barrera,10.0,32061,106.54,101.31,101.27,-0.62,-0.63,False
+Parque Centenario 27 de Febrero,10.0,28387,106.7,101.1,101.34,-0.93,-0.67,False
+Parque Deportivo Veracruzano,10.0,33327,106.05,101.33,101.2,-0.67,-0.58,False
+Parque Kukulcán,10.0,33948,105.08,101.38,101.04,-0.99,-0.48,False

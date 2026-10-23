@@ -1,0 +1,41 @@
+﻿decil,validacion,modelo,xrv_predicho,rv_observado,n
+1,temporada 2024-25 -> 2026,stuff,-0.0184,-0.0232,13241
+2,temporada 2024-25 -> 2026,stuff,-0.01,-0.0141,13241
+3,temporada 2024-25 -> 2026,stuff,-0.0059,-0.0087,13241
+4,temporada 2024-25 -> 2026,stuff,-0.0025,-0.006,13241
+5,temporada 2024-25 -> 2026,stuff,0.0007,-0.004,13241
+6,temporada 2024-25 -> 2026,stuff,0.004,-0.0008,13240
+7,temporada 2024-25 -> 2026,stuff,0.0074,0.0047,13241
+8,temporada 2024-25 -> 2026,stuff,0.0114,0.0059,13241
+9,temporada 2024-25 -> 2026,stuff,0.0161,0.0091,13241
+10,temporada 2024-25 -> 2026,stuff,0.0232,0.0172,13241
+1,temporada 2024-25 -> 2026,pitch,-0.09,-0.0934,13241
+2,temporada 2024-25 -> 2026,pitch,-0.0509,-0.0552,13241
+3,temporada 2024-25 -> 2026,pitch,-0.0374,-0.0399,13241
+4,temporada 2024-25 -> 2026,pitch,-0.0256,-0.0327,13241
+5,temporada 2024-25 -> 2026,pitch,-0.0122,-0.0177,13241
+6,temporada 2024-25 -> 2026,pitch,0.0037,-0.0053,13240
+7,temporada 2024-25 -> 2026,pitch,0.0211,0.0145,13241
+8,temporada 2024-25 -> 2026,pitch,0.0373,0.0307,13241
+9,temporada 2024-25 -> 2026,pitch,0.0529,0.0525,13241
+10,temporada 2024-25 -> 2026,pitch,0.1284,0.1268,13241
+1,parque resto -> Harp Helú,stuff,-0.0096,-0.0119,3891
+2,parque resto -> Harp Helú,stuff,-0.0037,-0.0085,3891
+3,parque resto -> Harp Helú,stuff,-0.0002,0.0056,3890
+4,parque resto -> Harp Helú,stuff,0.0029,0.0019,3891
+5,parque resto -> Harp Helú,stuff,0.0059,0.0046,3890
+6,parque resto -> Harp Helú,stuff,0.0089,0.0138,3891
+7,parque resto -> Harp Helú,stuff,0.0118,0.0172,3890
+8,parque resto -> Harp Helú,stuff,0.0147,0.0146,3891
+9,parque resto -> Harp Helú,stuff,0.0176,0.0162,3890
+10,parque resto -> Harp Helú,stuff,0.0222,0.0334,3891
+1,parque resto -> Harp Helú,pitch,-0.0797,-0.0744,3891
+2,parque resto -> Harp Helú,pitch,-0.0424,-0.0455,3891
+3,parque resto -> Harp Helú,pitch,-0.0295,-0.0284,3890
+4,parque resto -> Harp Helú,pitch,-0.0182,-0.0205,3891
+5,parque resto -> Harp Helú,pitch,-0.0056,-0.0084,3890
+6,parque resto -> Harp Helú,pitch,0.01,0.0091,3891
+7,parque resto -> Harp Helú,pitch,0.0259,0.0286,3890
+8,parque resto -> Harp Helú,pitch,0.0409,0.033,3891
+9,parque resto -> Harp Helú,pitch,0.0573,0.0553,3890
+10,parque resto -> Harp Helú,pitch,0.1341,0.138,3891

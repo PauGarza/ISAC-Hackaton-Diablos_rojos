@@ -1,0 +1,16 @@
+altitude_category,hit_type,size,mean
+Extreme Altitude,Bunt,502,-0.032
+Extreme Altitude,FlyBall,6892,0.138
+Extreme Altitude,GroundBall,15457,0.004
+Extreme Altitude,LineDrive,7269,0.402
+Extreme Altitude,Popup,2629,-0.298
+Medium Altitude,Bunt,496,-0.088
+Medium Altitude,FlyBall,5915,0.111
+Medium Altitude,GroundBall,12118,0.004
+Medium Altitude,LineDrive,6069,0.394
+Medium Altitude,Popup,2206,-0.314
+No Altitude,Bunt,1274,-0.128
+No Altitude,FlyBall,10936,0.001
+No Altitude,GroundBall,21131,-0.03
+No Altitude,LineDrive,11056,0.354
+No Altitude,Popup,4598,-0.33

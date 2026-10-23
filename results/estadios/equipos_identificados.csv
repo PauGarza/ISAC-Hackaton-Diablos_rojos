@@ -1,0 +1,61 @@
+﻿year,team_id,equipo,zona,ciudad,estadio,altitud_m,confianza
+2024,2024_T2,Acereros,Norte,Monclova,Estadio Monclova,600,media
+2024,2024_T12,Aguila,Sur,Veracruz,Parque Deportivo Veracruzano,10,baja
+2024,2024_T16,Algodoneros,Norte,Torreón,Estadio Revolución,1120,media
+2024,2024_T0,Bravos,Sur,León,Estadio Domingo Santana,1815,media
+2024,2024_T7,Caliente,Norte,Durango,Estadio Francisco Villa,1890,alta
+2024,2024_T13,Charros,Norte,Guadalajara,Estadio Panamericano,1570,baja
+2024,2024_T18,Conspiradores,Sur,Querétaro,Estadio Querétaro,1820,media
+2024,2024_T8,Diablos,Sur,CDMX,Estadio Alfredo Harp Helú,2240,alta
+2024,2024_T17,Dorados,Norte,Chihuahua,Estadio Monumental,1440,baja
+2024,2024_T1,Guerreros,Sur,Oaxaca,Estadio Eduardo Vasconcelos,1550,alta
+2024,2024_T6,Leones,Sur,Mérida,Parque Kukulcán,10,baja
+2024,2024_T11,Olmecas,Sur,Villahermosa,Parque Centenario 27 de Febrero,10,baja
+2024,2024_T4,Pericos,Sur,Puebla,Estadio Hermanos Serdán,2135,media
+2024,2024_T10,Piratas,Sur,Campeche,Estadio Nelson Barrera,10,media
+2024,2024_T9,Rieleros,Norte,Aguascalientes,Parque Alberto Romo Chávez,1880,alta
+2024,2024_T15,Saraperos,Norte,Saltillo,Estadio Francisco I. Madero,1600,media
+2024,2024_T3,Sultanes,Norte,Monterrey,Estadio Mobil Super,540,media
+2024,2024_T5,Tecos,Norte,Nuevo Laredo,Estadio Nuevo Laredo,170,media
+2024,2024_T14,Tigres,Sur,Cancún,Estadio Beto Ávila,10,media
+2024,2024_T19,Toros,Norte,Tijuana,Estadio Chevron,20,alta
+2025,2025_T12,Acereros,Norte,Monclova,Estadio Monclova,600,media
+2025,2025_T14,Aguila,Sur,Veracruz,Parque Deportivo Veracruzano,10,baja
+2025,2025_T5,Algodoneros,Norte,Torreón,Estadio Revolución,1120,media
+2025,2025_T1,Bravos,Sur,León,Estadio Domingo Santana,1815,media
+2025,2025_T3,Caliente,Norte,Durango,Estadio Francisco Villa,1890,alta
+2025,2025_T4,Charros,Norte,Guadalajara,Estadio Panamericano,1570,baja
+2025,2025_T7,Conspiradores,Sur,Querétaro,Estadio Querétaro,1820,media
+2025,2025_T11,Diablos,Sur,CDMX,Estadio Alfredo Harp Helú,2240,alta
+2025,2025_T6,Dorados,Norte,Chihuahua,Estadio Monumental,1440,baja
+2025,2025_T8,Guerreros,Sur,Oaxaca,Estadio Eduardo Vasconcelos,1550,alta
+2025,2025_T0,Leones,Sur,Mérida,Parque Kukulcán,10,baja
+2025,2025_T2,Olmecas,Sur,Villahermosa,Parque Centenario 27 de Febrero,10,baja
+2025,2025_T13,Pericos,Sur,Puebla,Estadio Hermanos Serdán,2135,media
+2025,2025_T9,Piratas,Sur,Campeche,Estadio Nelson Barrera,10,media
+2025,2025_T18,Rieleros,Norte,Aguascalientes,Parque Alberto Romo Chávez,1880,alta
+2025,2025_T17,Saraperos,Norte,Saltillo,Estadio Francisco I. Madero,1600,media
+2025,2025_T16,Sultanes,Norte,Monterrey,Estadio Mobil Super,540,media
+2025,2025_T15,Tecos,Norte,Nuevo Laredo,Estadio Nuevo Laredo,170,media
+2025,2025_T10,Tigres,Sur,Cancún,Estadio Beto Ávila,10,media
+2025,2025_T19,Toros,Norte,Tijuana,Estadio Chevron,20,alta
+2026,2026_T15,Acereros,Norte,Monclova,Estadio Monclova,600,media
+2026,2026_T5,Aguila,Sur,Veracruz,Parque Deportivo Veracruzano,10,baja
+2026,2026_T11,Algodoneros,Norte,Torreón,Estadio Revolución,1120,media
+2026,2026_T2,Bravos,Sur,León,Estadio Domingo Santana,1815,media
+2026,2026_T3,Caliente,Norte,Durango,Estadio Francisco Villa,1890,alta
+2026,2026_T17,Charros,Norte,Guadalajara,Estadio Panamericano,1570,baja
+2026,2026_T14,Conspiradores,Sur,Querétaro,Estadio Querétaro,1820,media
+2026,2026_T1,Diablos,Sur,CDMX,Estadio Alfredo Harp Helú,2240,alta
+2026,2026_T16,Dorados,Norte,Chihuahua,Estadio Monumental,1440,baja
+2026,2026_T9,Guerreros,Sur,Oaxaca,Estadio Eduardo Vasconcelos,1550,alta
+2026,2026_T22,Leones,Sur,Mérida,Parque Kukulcán,10,baja
+2026,2026_T7,Olmecas,Sur,Villahermosa,Parque Centenario 27 de Febrero,10,baja
+2026,2026_T8,Pericos,Sur,Puebla,Estadio Hermanos Serdán,2135,media
+2026,2026_T18,Piratas,Sur,Campeche,Estadio Nelson Barrera,10,media
+2026,2026_T4,Rieleros,Norte,Aguascalientes,Parque Alberto Romo Chávez,1880,alta
+2026,2026_T19,Saraperos,Norte,Saltillo,Estadio Francisco I. Madero,1600,media
+2026,2026_T6,Sultanes,Norte,Monterrey,Estadio Mobil Super,540,media
+2026,2026_T10,Tecos,Norte,Nuevo Laredo,Estadio Nuevo Laredo,170,media
+2026,2026_T0,Tigres,Sur,Cancún,Estadio Beto Ávila,10,media
+2026,2026_T13,Toros,Norte,Tijuana,Estadio Chevron,20,alta
