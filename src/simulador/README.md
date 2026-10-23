@@ -8,4 +8,4 @@ Requiere haber corrido el pipeline (`outputs/resultados/scores_pitch.parquet` y 
 python src/simulador/construir_motor_final.py
 ```
 
-La app es `app/simulador/simulador_standalone.html`: un solo archivo, funciona sin internet.
+La app es `app/simulador/simulador_standalone.html`: un solo archivo, funciona sin internet. Es el mismo simulador publicado en línea en https://claude.ai/artifact/KYU5KNKmTSzew9CFQMMRhd.

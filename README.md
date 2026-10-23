@@ -31,7 +31,7 @@ Escala de todos los scores: 100 + 10·z (100 = promedio de la liga, 110 = arriba
 | Resumen ejecutivo | [`reports/resumen_ejecutivo/reporte_conclusiones.pdf`](reports/resumen_ejecutivo/reporte_conclusiones.pdf) |
 | Reporte completo para dirección deportiva | [`reports/reporte_final_diablos.pdf`](reports/reporte_final_diablos.pdf) |
 | Documento técnico del modelo | [`docs/documento_tecnico_stuffplus.pdf`](docs/documento_tecnico_stuffplus.pdf) |
-| Simulador Harp Helú vs nivel del mar | [`app/simulador/simulador_standalone.html`](app/simulador/simulador_standalone.html) (descargar y abrir; funciona sin internet) · [versión en línea](https://claude.ai/artifact/KYU5KNKmTSzew9CFQMMRhd) |
+| Simulador Harp Helú vs nivel del mar | En línea: https://claude.ai/artifact/KYU5KNKmTSzew9CFQMMRhd · Local: [`app/simulador/simulador_standalone.html`](app/simulador/simulador_standalone.html) (descargar y abrir; funciona sin internet). **Ambos contienen el mismo simulador.** |
 | Scores por pitcher y arsenal | [`results/scores/`](results/scores/) |
 
 ## Estructura del repositorio
